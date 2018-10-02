@@ -1,3 +1,6 @@
 [submodule "objectstorage"]
 	path = objectstorage
 	url = https://github.com/ice48623/objectstorage.git
+[submodule "video-thumbnailer"]
+	path = video-thumbnailer
+	url = https://github.com/ice48623/video-thumbnailer.git
