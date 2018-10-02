@@ -1,0 +1,3 @@
+[submodule "objectstorage"]
+	path = objectstorage
+	url = https://github.com/ice48623/objectstorage.git
