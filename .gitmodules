@@ -7,3 +7,6 @@
 [submodule "thumbnail_rabbitMQ"]
 	path = thumbnail_rabbitMQ
 	url = https://github.com/ice48623/thumbnail_rabbitMQ.git
+[submodule "thumbnail_web_controller"]
+	path = thumbnail_web_controller
+	url = https://github.com/ice48623/thumbnail_web_controller.git

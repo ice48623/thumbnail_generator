@@ -1,0 +1,21 @@
+version: '3.2'
+
+services:
+  # RabbitMQ
+  rabbit:
+    hostname: rabbit
+    image: rabbitmq:3.6.1-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+  controller:
+    hostname: controller
+    build: ./thumbnail_web_controller
+    restart: unless-stopped
+    ports:
+      - 5000:5000
+    depends_on:
+      - rabbit
+    environment:
+      - RABBIT_HOST=rabbit
