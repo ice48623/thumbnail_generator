@@ -20,6 +20,18 @@ services:
       - rabbit
     environment:
       - RABBIT_HOST=rabbit
+      - STORAGE_HOST=storage
+
+  thumbnail:
+    build: ./video-thumbnailer
+    restart: unless-stopped
+    depends_on:
+      - rabbit
+    volumes:
+      - ./thumbnail_tmp:/docker/tmp
+    # command: ["./wait-for-it.sh", "rabbit:5672", "--", "python3", "./thumbnail-generator.py"]
+    environment:
+      - RABBIT_HOST=rabbit
 
   storage:
     build: ./objectstorage
