@@ -45,5 +45,5 @@ services:
       - MYSQL_DATABASE=objectstorage
       - MYSQL_USER=storage
       - MYSQL_PASSWORD=asdfjkl;
-    volumes:
-      - ./mysql-data:/var/lib/mysql:rw
+    # volumes:
+    #   - ./mysql-data:/var/lib/mysql:rw
