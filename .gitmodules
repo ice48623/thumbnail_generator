@@ -10,3 +10,6 @@
 [submodule "thumbnail_web_controller"]
 	path = thumbnail_web_controller
 	url = https://github.com/ice48623/thumbnail_web_controller.git
+[submodule "thumbnail_frontend"]
+	path = thumbnail_frontend
+	url = https://github.com/ice48623/thumbnail_frontend.git
