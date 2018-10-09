@@ -1,66 +1,66 @@
 version: '3.2'
 
 services:
-  # rabbit:
-  #   hostname: rabbit
-  #   image: rabbitmq:3.6.1-management
-  #   restart: unless-stopped
-  #   ports:
-  #     - 5672:5672
-  #     - 15672:15672
-  #
-  # controller:
-  #   hostname: controller
-  #   build: ./thumbnail_web_controller
-  #   restart: unless-stopped
-  #   ports:
-  #     - 5000:5000
-  #   depends_on:
-  #     - rabbit
-  #   environment:
-  #     - RABBIT_HOST=rabbit
-  #     - STORAGE_HOST=storage
-  #
-  # thumbnail:
-  #   build: ./video-thumbnailer
-  #   restart: unless-stopped
-  #   depends_on:
-  #     - rabbit
-  #   volumes:
-  #     - ./thumbnail_tmp:/docker/tmp
-  #   environment:
-  #     - RABBIT_HOST=rabbit
-  #
-  # storage:
-  #   build: ./objectstorage
-  #   restart: unless-stopped
-  #   depends_on:
-  #     - database
-  #   ports:
-  #     - 8080:8080
-  #   volumes:
-  #     - ./bucket:/webapi/bucket
-  #   environment:
-  #     - DATABASE_HOST=database
-  #     - DATABASE_USER=storage
-  #     - DATABASE_PASSWORD=asdfjkl;
-  #     - DATABASE_NAME=objectstorage
-  #
-  # database:
-  #   image: mysql:5.7
-  #   restart: unless-stopped
-  #   environment:
-  #     - MYSQL_ROOT_PASSWORD=password
-  #     - MYSQL_DATABASE=objectstorage
-  #     - MYSQL_USER=storage
-  #     - MYSQL_PASSWORD=asdfjkl;
-  #   volumes:
-  #     - ./mysql-data:/var/lib/mysql:rw
-
-  frontend:
-    build: ./thumbnail_frontend
+  rabbit:
+    hostname: rabbit
+    image: rabbitmq:3.6.1-management
     restart: unless-stopped
-    # depends_on:
-    #   - storage
     ports:
-      - 3000:5000
+      - 5672:5672
+      - 15672:15672
+
+  controller:
+    hostname: controller
+    build: ./thumbnail_web_controller
+    restart: unless-stopped
+    ports:
+      - 5000:5000
+    depends_on:
+      - rabbit
+    environment:
+      - RABBIT_HOST=rabbit
+      - STORAGE_HOST=storage
+
+  thumbnail:
+    build: ./video-thumbnailer
+    restart: unless-stopped
+    depends_on:
+      - rabbit
+    volumes:
+      - ./thumbnail_tmp:/docker/tmp
+    environment:
+      - RABBIT_HOST=rabbit
+
+  storage:
+    build: ./objectstorage
+    restart: unless-stopped
+    depends_on:
+      - database
+    ports:
+      - 8080:8080
+    volumes:
+      - ./bucket:/webapi/bucket
+    environment:
+      - DATABASE_HOST=database
+      - DATABASE_USER=storage
+      - DATABASE_PASSWORD=asdfjkl;
+      - DATABASE_NAME=objectstorage
+
+  database:
+    image: mysql:5.7
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=objectstorage
+      - MYSQL_USER=storage
+      - MYSQL_PASSWORD=asdfjkl;
+    volumes:
+      - ./mysql-data:/var/lib/mysql:rw
+
+  # frontend:
+  #   build: ./thumbnail_frontend
+  #   restart: unless-stopped
+  #   # depends_on:
+  #   #   - storage
+  #   ports:
+  #     - 3000:5000
