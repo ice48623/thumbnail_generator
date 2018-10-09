@@ -57,10 +57,11 @@ services:
     volumes:
       - ./mysql-data:/var/lib/mysql:rw
 
-  # frontend:
-  #   build: ./thumbnail_frontend
-  #   restart: unless-stopped
-  #   # depends_on:
-  #   #   - storage
-  #   ports:
-  #     - 3000:5000
+  frontend:
+    build: ./thumbnail_frontend
+    restart: unless-stopped
+    depends_on:
+      - storage
+      - controller
+    ports:
+      - 3000:5000
